@@ -1,0 +1,777 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Health, Wellness and Connection in Portland</title>
+<meta name="description" content="A verified list of in-person places and groups in Portland, Oregon where you can meet people while doing something worth doing.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#F4F6F2;
+  --surface:#FBFCFA;
+  --ink:#1F2823;
+  --muted:#5C6B61;
+  --accent:#2F6B45;
+  --accent-soft:#E3EDE5;
+  --flag:#96662A;
+  --line:#DDE4DC;
+  --display:"Bricolage Grotesque",system-ui,sans-serif;
+  --body:"Newsreader",Georgia,serif;
+}
+@media (prefers-color-scheme: dark){
+  :root{
+    --bg:#121714;
+    --surface:#1A211C;
+    --ink:#E4EBE3;
+    --muted:#93A697;
+    --accent:#7FBF95;
+    --accent-soft:#1F2E24;
+    --flag:#D3A159;
+    --line:#2A342D;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#121714; --surface:#1A211C; --ink:#E4EBE3; --muted:#93A697;
+  --accent:#7FBF95; --accent-soft:#1F2E24; --flag:#D3A159; --line:#2A342D;
+}
+:root[data-theme="light"]{
+  --bg:#F4F6F2; --surface:#FBFCFA; --ink:#1F2823; --muted:#5C6B61;
+  --accent:#2F6B45; --accent-soft:#E3EDE5; --flag:#96662A; --line:#DDE4DC;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion: reduce){ html{scroll-behavior:auto} }
+body{
+  margin:0; background:var(--bg); color:var(--ink);
+  font-family:var(--body); font-size:1.075rem; line-height:1.55;
+}
+a{color:var(--accent); text-decoration-thickness:1px; text-underline-offset:2px}
+a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(--accent); outline-offset:2px; border-radius:2px}
+.wrap{max-width:44rem; margin:0 auto; padding:0 1.25rem}
+
+header.masthead{padding:3.5rem 0 1.5rem}
+.eyebrow{
+  font-family:var(--display); font-size:.72rem; font-weight:600;
+  letter-spacing:.14em; text-transform:uppercase; color:var(--muted);
+  display:flex; align-items:center; justify-content:space-between; gap:1rem;
+}
+#themeToggle{
+  font-family:var(--display); font-size:.72rem; letter-spacing:.1em; text-transform:uppercase;
+  background:none; border:1px solid var(--line); color:var(--muted);
+  padding:.3rem .7rem; border-radius:999px; cursor:pointer;
+}
+#themeToggle:hover{border-color:var(--accent); color:var(--accent)}
+h1{
+  font-family:var(--display); font-weight:800; font-size:clamp(2rem,6vw,3rem);
+  line-height:1.05; margin:.75rem 0 1rem; text-wrap:balance; letter-spacing:-.01em;
+}
+h1 .pdx{color:var(--accent)}
+.explainer{max-width:38rem; color:var(--ink)}
+.explainer p{margin:.6rem 0}
+.smallnote{font-size:.9rem; color:var(--muted)}
+
+nav.toc{
+  position:sticky; top:0; z-index:5; background:var(--bg);
+  border-block:1px solid var(--line); padding:.55rem 0; margin-top:1.5rem;
+}
+nav.toc .wrap{display:flex; flex-wrap:wrap; gap:.35rem .5rem; align-items:center}
+nav.toc a{
+  font-family:var(--display); font-size:.8rem; font-weight:600; text-decoration:none;
+  color:var(--ink); padding:.25rem .65rem; border-radius:999px; border:1px solid var(--line);
+  background:var(--surface); white-space:nowrap;
+}
+nav.toc a:hover{border-color:var(--accent); color:var(--accent)}
+
+.tools{display:flex; flex-wrap:wrap; gap:.5rem; align-items:center; margin:1.5rem 0 0}
+.tools input[type="search"]{
+  flex:1 1 12rem; font-family:var(--display); font-size:.9rem;
+  padding:.5rem .8rem; border:1px solid var(--line); border-radius:999px;
+  background:var(--surface); color:var(--ink);
+}
+.chip{
+  font-family:var(--display); font-size:.8rem; font-weight:600; cursor:pointer;
+  padding:.35rem .8rem; border-radius:999px; border:1px solid var(--line);
+  background:var(--surface); color:var(--ink);
+}
+.chip[aria-pressed="true"]{background:var(--accent); border-color:var(--accent); color:var(--bg)}
+#count{font-family:var(--display); font-size:.78rem; color:var(--muted); margin-left:auto}
+
+section.cat{padding:2.25rem 0 .5rem}
+.cat-head h2{
+  font-family:var(--display); font-weight:700; font-size:1.5rem; margin:0;
+  letter-spacing:-.01em;
+}
+.cat-head h2::before{content:"§ "; color:var(--accent); font-weight:400}
+.cat-head p{margin:.4rem 0 0; color:var(--muted); font-size:.95rem; max-width:36rem}
+
+article.entry{
+  border-top:1px solid var(--line); padding:1.15rem 0 1.05rem; margin-top:1.15rem;
+}
+article.entry:first-of-type{margin-top:1.5rem}
+.entry h3{
+  font-family:var(--display); font-weight:600; font-size:1.08rem; margin:0;
+  display:flex; flex-wrap:wrap; gap:.35rem .6rem; align-items:baseline;
+}
+.entry h3 a{color:var(--ink); text-decoration:none; border-bottom:2px solid var(--accent-soft)}
+.entry h3 a:hover{color:var(--accent); border-bottom-color:var(--accent)}
+.badges{display:inline-flex; gap:.3rem}
+.badge{
+  font-family:var(--display); font-size:.62rem; font-weight:700; letter-spacing:.08em;
+  text-transform:uppercase; color:var(--accent); background:var(--accent-soft);
+  padding:.12rem .45rem; border-radius:3px; align-self:center;
+}
+.meta{
+  font-family:var(--display); font-size:.8rem; color:var(--muted);
+  font-variant-numeric:tabular-nums; margin:.3rem 0 0;
+}
+.meta b{font-weight:600; color:var(--ink)}
+.entry p.desc{margin:.45rem 0 0}
+.entry p.why{margin:.45rem 0 0; font-style:italic; color:var(--muted)}
+.entry p.flagnote{margin:.45rem 0 0; font-size:.88rem; color:var(--flag)}
+.entry p.flagnote::before{content:"△ "; }
+
+section.dead{padding:2.5rem 0}
+section.dead .inner{
+  background:var(--surface); border:1px solid var(--line); border-radius:8px; padding:1.25rem 1.4rem;
+}
+section.dead h2{font-family:var(--display); font-size:1.15rem; margin:0 0 .3rem}
+section.dead ul{margin:.5rem 0 0; padding-left:1.1rem}
+section.dead li{margin:.35rem 0; font-size:.95rem}
+section.dead .smallnote{margin-top:.6rem}
+
+footer{padding:2rem 0 3.5rem; color:var(--muted); font-size:.9rem; border-top:1px solid var(--line)}
+.hidden{display:none}
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="wrap">
+    <p class="eyebrow"><span>A field guide · verified July 2026</span><button id="themeToggle" type="button">Theme</button></p>
+    <h1>Health, wellness and connection in <span class="pdx">Portland</span></h1>
+    <div class="explainer">
+      <p>This is a list of places and groups in Portland, Oregon where you can meet people while doing things that might be interesting — active things, creative things, intellectual things, quiet things. The common thread: you show up somewhere in person, do something real, and the socializing takes care of itself.</p>
+      <p>Every link was checked against the organization's own live pages in July 2026. Where something looked shaky, there's a <span style="color:var(--flag)">△ caveat</span>; things that turned out to be defunct are listed at the bottom so you don't waste an evening on them.</p>
+    </div>
+  </div>
+</header>
+
+<nav class="toc" aria-label="Sections">
+  <div class="wrap">
+    <a href="#move">Move</a>
+    <a href="#make">Make</a>
+    <a href="#think">Think &amp; Play</a>
+    <a href="#outside">Outside &amp; Quiet</a>
+    <a href="#serve">Connect &amp; Serve</a>
+    <a href="#dead">Dead ends</a>
+  </div>
+</nav>
+
+<main class="wrap">
+
+<div class="tools" role="group" aria-label="Filters">
+  <input type="search" id="q" placeholder="Search entries…" aria-label="Search entries">
+  <button class="chip" data-tag="free" aria-pressed="false" type="button">Free</button>
+  <button class="chip" data-tag="dropin" aria-pressed="false" type="button">Drop-in</button>
+  <span id="count"></span>
+</div>
+
+<!-- ============ MOVE ============ -->
+<section class="cat" id="move">
+  <div class="cat-head">
+    <h2>Move</h2>
+    <p>Bodies first. Everything here is beginner-legible, and most of it is partner- or group-shaped by design — you can't do it alone even if you try.</p>
+  </div>
+
+  <article class="entry" data-tags="">
+    <h3><a href="https://www.jewelyogapdx.com/">Jewel Yoga PDX (Iyengar)</a></h3>
+    <p class="meta"><b>Terms of 10–13 weeks</b> · summer term Jul 12–Sep 19 · $25 drop-in, ~$210/term, sliding scale, free intro class</p>
+    <p class="desc">Downtown studio dedicated to the Iyengar method — precise, prop-heavy, taught in term-long cohorts.</p>
+    <p class="why">Term-based enrollment means you practice with the same people for months; the closest thing yoga has to classmates.</p>
+    <p class="flagnote">Some schedule images on the site are stale; term registration is current — confirm class times at (503) 227-5524.</p>
+  </article>
+
+  <article class="entry" data-tags="dropin">
+    <h3><a href="https://jewartsgymnasticsnw.com/adult-gymnastics">Jewart's Gymnastics NW — Adult Gymnastics</a> <span class="badges"><span class="badge">Drop-in</span></span></h3>
+    <p class="meta"><b>Tuesdays 7:30–9pm</b> · $20 member / $30 non-member drop-in</p>
+    <p class="desc">Coached co-ed adult gymnastics — vault, bars, beam, floor — including never-done-it adults.</p>
+    <p class="why">Shared spotting and cheering each other through skills makes it naturally social, and drop-in pricing makes the first visit cheap to try.</p>
+  </article>
+
+  <article class="entry" data-tags="">
+    <h3><a href="https://nightflightaerial.com/studio-classes/">Night Flight Aerial &amp; Circus Arts</a></h3>
+    <p class="meta"><b>5-week beginner series</b> (trapeze, silks, lyra) · $206/series · 4–8 students per coach</p>
+    <p class="desc">Queer-owned aerial and circus studio with small-group series classes; current series verified through early August.</p>
+    <p class="why">Tiny cohorts over multiple weeks build camaraderie fast, and the explicitly inclusive culture lowers the bar for anxious beginners.</p>
+  </article>
+
+  <article class="entry" data-tags="">
+    <h3><a href="https://www.echotheaterpdx.org/">Echo Theater Company</a></h3>
+    <p class="meta"><b>Adult (15+) classes</b> in acrobatics, aerial, physical theater · pricing varies by class</p>
+    <p class="desc">Circus and movement-arts school that absorbed The Circus Project's gym space; classes listed through September.</p>
+    <p class="why">A stated "creative, non-competitive atmosphere" — success is defined as showing up and playing.</p>
+  </article>
+
+  <article class="entry" data-tags="dropin">
+    <h3><a href="https://www.thecircuitgym.com/">The Circuit Bouldering Gym</a> <span class="badges"><span class="badge">Drop-in</span></span></h3>
+    <p class="meta"><b>Open daily</b> · two Portland locations (SW Macadam, NE 17th) · day pass or membership</p>
+    <p class="desc">Portland's dedicated bouldering chain — no ropes, no partner needed.</p>
+    <p class="why">Bouldering is the most social climbing format: everyone works the same problems at ground level and strangers spontaneously coach each other. Highest confidence in the social dividends of anything on this page.</p>
+  </article>
+
+  <article class="entry" data-tags="dropin">
+    <h3><a href="https://portlandrockgym.com/">Portland Rock Gym</a> <span class="badges"><span class="badge">Drop-in</span></span></h3>
+    <p class="meta"><b>Two locations</b> (NE Portland, Beaverton) · "First Time" intro pathway · see rates page</p>
+    <p class="desc">Independent and locally owned since 1987; ropes plus bouldering, intro classes, and recurring community events.</p>
+    <p class="why">A long-running institution with structured first-timer onboarding — you don't have to figure out the culture alone.</p>
+  </article>
+
+  <article class="entry" data-tags="">
+    <h3><a href="https://www.nwfencing.org/classes/">Northwest Fencing Center</a></h3>
+    <p class="meta"><b>Intro: Wednesdays 6–7pm</b>, monthly 3-week cohorts · $75 · Tigard</p>
+    <p class="desc">One of the country's larger nonprofit fencing clubs, with a defined ladder: intro course → beginner weekly class → open fencing.</p>
+    <p class="why">Highly g-loaded, like all fencing — and the progression ladder gives you a standing weekly appointment with the same partners.</p>
+  </article>
+
+  <article class="entry" data-tags="">
+    <h3><a href="https://www.bridgecitybladeshema.com/">Bridge City Blades (HEMA)</a></h3>
+    <p class="meta"><b>8-week beginner cohorts</b> (4-week condensed option) · SE Grand Ave · contact for pricing and next start</p>
+    <p class="desc">Historical European martial arts — Italian longsword. Their motto is literally "Forge Friends, Study Swordplay."</p>
+    <p class="why">Cohort-based beginner courses in an explicitly collaborative, not competitive, culture; sword people bond fast.</p>
+  </article>
+
+  <article class="entry" data-tags="dropin">
+    <h3><a href="https://dancepdx.com/contactimprovjam.htm">Contact Improv Jams</a> <span class="badges"><span class="badge">Drop-in</span></span></h3>
+    <p class="meta"><b>Sun 6–8:30pm</b> (Milwaukie) · <b>Tue 7–9pm</b> (NE, experienced-leaning) · <b>Thu 7–9pm</b> (N Portland, facilitated — best for beginners) · $10–20 sliding</p>
+    <p class="desc">Three recurring weekly CI jams across the city; listing page verified freshly updated this month.</p>
+    <p class="why">Touch-based, verbal-pressure-free socializing, plus everything dance teaches about tempo and embodiment.</p>
+  </article>
+
+  <article class="entry" data-tags="dropin">
+    <h3><a href="https://www.thedenpdx.com/events">Ecstatic Dance Portland at The Den</a> <span class="badges"><span class="badge">Drop-in</span></span></h3>
+    <p class="meta"><b>Tuesdays 7–10pm</b> · SE Yamhill St · tickets at the door</p>
+    <p class="desc">Weekly freeform, substance-free dance wave — no steps to learn, no partner required.</p>
+    <p class="why">Zero-skill-barrier group movement with a friendly opening circle; the regulars form a recognizable weekly community.</p>
+  </article>
+
+  <article class="entry" data-tags="dropin">
+    <h3><a href="https://www.contraremix.com/">PDX Contra Remix</a> <span class="badges"><span class="badge">Drop-in</span></span></h3>
+    <p class="meta"><b>Roughly monthly Sundays</b> · lesson 6:30pm, dancing to 10pm · Norse Hall · $6–20 sliding, or volunteer instead</p>
+    <p class="desc">Contra dancing to DJed modern music, with a basics lesson before every dance and constant partner rotation by design.</p>
+    <p class="why">Contra is engineered sociability — the form itself hands you thirty partners a night, and dance floors skew the way dance floors famously skew.</p>
+    <p class="flagnote">Fall dates typically post later in the year; Portland Country Dance Community (portlandcountrydance.org) runs additional contra nights but their site blocked automated verification — check manually.</p>
+  </article>
+
+  <article class="entry" data-tags="">
+    <h3><a href="https://www.multnomahaikikai.com/">Multnomah Aikikai</a></h3>
+    <p class="meta"><b>Adult classes Mon/Wed 6pm, Thu/Sat 10:30am</b> · S Macadam · call (503) 246-8120 for pricing</p>
+    <p class="desc">Traditional aikido dojo, running since 1992, with a defined get-started path for adult beginners.</p>
+    <p class="why">Aikido is inherently partner-based and non-competitive — you literally cannot practice alone — and dojo culture supplies ritualized belonging.</p>
+    <p class="flagnote">Activity confirmed via recent testimonial rather than a dated schedule; call to confirm before showing up.</p>
+  </article>
+
+  <article class="entry" data-tags="free dropin">
+    <h3><a href="https://portlandrunning.com/pages/weekly-group-runs">Portland Running Company Group Runs</a> <span class="badges"><span class="badge">Free</span><span class="badge">Drop-in</span></span></h3>
+    <p class="meta"><b>Mon 6pm (NW), Tue 6:30pm track, Thu 6pm "Thirsty Thursday", Sun 8am long run</b> · free, sign one waiver</p>
+    <p class="desc">Show-up-and-run group runs from their NW Raleigh St shop and Beaverton store.</p>
+    <p class="why">Thirsty Thursday bakes the socializing directly into the format — the run is the excuse, the in-house Run Pub is the point.</p>
+  </article>
+
+  <article class="entry" data-tags="">
+    <h3><a href="https://wasabiusa.org/">Wasabi Paddling Club</a></h3>
+    <p class="meta"><b>Year-round team practices</b> on the Willamette · first three paddles free via "Try a Team"</p>
+    <p class="desc">Portland's largest dragon boat club — around 300 members, teams from purely recreational to internationally competitive.</p>
+    <p class="why">Dragon boating is a twenty-person synchronized activity: joining a practice is instant team membership, in Portland's signature social sport.</p>
+  </article>
+
+  <article class="entry" data-tags="">
+    <h3><a href="http://stationlrowingclub.com/new-classes/">Station L Rowing Club — Learn to Row</a></h3>
+    <p class="meta"><b>Monthly sessions Apr–Sep</b>, 2×/week for 4 weeks · $250 + $25/yr US Rowing · SE Ivon St boatyard</p>
+    <p class="desc">Community rowing club with a structured sculling pipeline: small classes of 4–5 graduate together into a development group.</p>
+    <p class="why">A ready-made progression from stranger to clubmate, on the water at sunrise.</p>
+    <p class="flagnote">Waitlist is long — they suggest winter "Learn to Erg" classes while you wait.</p>
+  </article>
+</section>
+
+<!-- ============ MAKE ============ -->
+<section class="cat" id="make">
+  <div class="cat-head">
+    <h2>Make</h2>
+    <p>Hands busy, conversation optional. Makerspaces filter for a certain kind of creative person; classes give you a cohort; drop-in formats give you a reason to leave the house tonight.</p>
+  </div>
+
+  <article class="entry" data-tags="free dropin">
+    <h3><a href="https://pdxhackerspace.org/">PDX Hackerspace (CTRL-H)</a> <span class="badges"><span class="badge">Free</span><span class="badge">Drop-in</span></span></h3>
+    <p class="meta"><b>Monthly open house</b> (work party, 12–5pm) · weekly workshop Wednesdays 6:30pm · N Interstate Ave · open events free</p>
+    <p class="desc">Community hackerspace with electronics, fabrication, and craft tools, plus Dorkbot, locksport, and robotics groups on a live 2026 calendar.</p>
+    <p class="why">Low-pressure drop-in structure where conversation happens naturally around shared projects — no social performance required.</p>
+  </article>
+
+  <article class="entry" data-tags="">
+    <h3><a href="https://www.pastlives.space/classes/">Past Lives Makerspace</a></h3>
+    <p class="meta"><b>Rolling class calendar</b> (wheel throwing, blacksmithing, welding, lampworking, leather) · $12–500 by class · SE 9th Ave</p>
+    <p class="desc">Nonprofit 26,000 sq ft makerspace; class dates verified from July through December.</p>
+    <p class="why">Structured beginner classes are ideal scaffolding — a scheduled reason to show up and make something with the same cohort weekly. The city's best single answer to "I want to hit metal with a hammer."</p>
+  </article>
+
+  <article class="entry" data-tags="dropin">
+    <h3><a href="https://diybar.co/">DIY Bar</a> <span class="badges"><span class="badge">Drop-in</span></span></h3>
+    <p class="meta"><b>Wed–Sun</b>, walk-ins welcome · ~$20–45 per project plus drinks · N Vancouver Ave</p>
+    <p class="desc">A craft bar: pick a project (leather, macrame, wood), make it at a shared table with a beer.</p>
+    <p class="why">The lowest possible barrier to making a thing near other people — one-off visits, no commitment, built-in conversation piece.</p>
+  </article>
+
+  <article class="entry" data-tags="">
+    <h3><a href="https://www.kickstandcomedy.org/comedy-classes">Kickstand Comedy</a></h3>
+    <p class="meta"><b>Level 1 improv: 6 weeks</b>, 2.5 hrs/week · ~$200–300 per level · five-level track</p>
+    <p class="desc">Nonprofit improv/sketch/standup theater with a full curriculum.</p>
+    <p class="why">Improv is structured, cohort-based, and built on acceptance — and things like status transactions and blocking/accepting offer a genuinely new lens on why certain anti-playful behaviors grate.</p>
+    <p class="flagnote">Class registration loads dynamically — check the portal or email for the next Level 1 start.</p>
+  </article>
+
+  <article class="entry" data-tags="">
+    <h3><a href="https://www.curiouscomedy.org/">Curious Comedy Theater</a></h3>
+    <p class="meta"><b>Adult improv classes</b> + weekly shows Fri/Sat 7:30pm · NE MLK Jr Blvd · historically ~$275/term</p>
+    <p class="desc">Nonprofit comedy theater with a "comedy for everybody" mission; classes end in a graduation show with your cohort.</p>
+    <p class="flagnote">Theater verified active, but current class dates load dynamically — call (503) 477-9477 to confirm the term.</p>
+  </article>
+
+  <article class="entry" data-tags="free">
+    <h3><a href="https://www.twilighttheatercompany.org/get-involved.html">Twilight Theater Company</a> <span class="badges"><span class="badge">Free</span></span></h3>
+    <p class="meta"><b>Auditions posted per show</b> · Kenton · free to participate (acting, crew, front-of-house)</p>
+    <p class="desc">Volunteer community theater that is "always looking for new actors" — and for people who'd rather build sets or usher.</p>
+    <p class="why">A production gives you weeks of scheduled rehearsals with a shared goal: deep, time-bound social immersion with a defined ending.</p>
+  </article>
+
+  <article class="entry" data-tags="">
+    <h3><a href="https://www.themudroompdx.com/">The Mud Room Ceramics Studio</a></h3>
+    <p class="meta"><b>6-week rotating class schedule</b> + one-time "Try It" sessions · SE and N Portland · sliding-scale membership, work-trade available</p>
+    <p class="desc">Community pottery studio; members get 24/7 access and members-only social events.</p>
+    <p class="why">Clay plus the same faces every week, with sliding-scale pricing that takes cost off the list of excuses.</p>
+  </article>
+
+  <article class="entry" data-tags="dropin">
+    <h3><a href="https://www.hipboneartstudio.com/">Hipbone Art Studio</a> <span class="badges"><span class="badge">Drop-in</span></span></h3>
+    <p class="meta"><b>Wed 12:30 &amp; 6:30pm, Sat 10am &amp; 2pm, Sun 10am</b> · $15–18 + model tip · E Burnside · no signup, just show up</p>
+    <p class="desc">Drop-in figure and portrait drawing sessions with a posted current schedule — the strongest-verified entry in this section.</p>
+    <p class="why">Parallel creative practice in a room of regulars: social contact with zero forced interaction, perfect for low-energy days.</p>
+  </article>
+
+  <article class="entry" data-tags="free dropin">
+    <h3><a href="https://www.hostelcafepdx.com/">Old-Time Jam at Hostel Cafe</a> <span class="badges"><span class="badge">Free</span><span class="badge">Drop-in</span></span></h3>
+    <p class="meta"><b>Thursdays 7–10pm</b> · NW Portland · free (buy a coffee or beer) · Irish jam Sundays 1:30–4:30pm, open mic Mondays</p>
+    <p class="desc">Weekly traditional Appalachian string-band jam, all skill levels, at a cafe that hosts three participatory music nights a week.</p>
+    <p class="why">Jam circles have built-in social protocol — you participate by playing, and the regulars form a weekly community.</p>
+  </article>
+
+  <article class="entry" data-tags="free dropin">
+    <h3><a href="https://www.cceoregon.org/sessions">Irish Sessions directory (CCE Oregon)</a> <span class="badges"><span class="badge">Free</span><span class="badge">Drop-in</span></span></h3>
+    <p class="meta"><b>Learning/slow sessions 1st &amp; 3rd Saturdays 1–3pm</b> (SE) · open sessions Tue &amp; Thu at pubs around town · free</p>
+    <p class="desc">A maintained directory of Portland-area Irish trad sessions, including ones explicitly built for beginners.</p>
+    <p class="why">"Slow sessions" exist specifically to welcome learners into a long-standing musical community — mentorship is the format.</p>
+  </article>
+
+  <article class="entry" data-tags="dropin">
+    <h3><a href="https://www.lowbarchorale.com/">Low Bar Chorale</a> <span class="badges"><span class="badge">Drop-in</span></span></h3>
+    <p class="meta"><b>Roughly every other Tuesday night</b> + special events · Show Bar at Revolution Hall · free–$15</p>
+    <p class="desc">Portland's drop-in bar choir: sing rock and pop in three-part harmony with a live band and a hundred strangers. No auditions, no rehearsals, no commitment — and recent events sold out, which is a sign of health.</p>
+    <p class="why">Group singing is one of the fastest known routes to social bonding, and this format removes every barrier, drink in hand.</p>
+  </article>
+
+  <article class="entry" data-tags="dropin">
+    <h3><a href="https://www.iprc.org/">Independent Publishing Resource Center (IPRC)</a> <span class="badges"><span class="badge">Drop-in</span></span></h3>
+    <p class="meta"><b>Open studio 5 days/week</b> + monthly workshops (zines, letterpress, risograph) · SE Main St · sliding scale/donation for most programming</p>
+    <p class="desc">Nonprofit zine, print, and book-arts center with verified current events and membership tiers.</p>
+    <p class="why">A membership buys you a third place with drop-in hours and a famously welcoming DIY-publishing community — very Portland.</p>
+  </article>
+
+  <article class="entry" data-tags="free">
+    <h3><a href="https://www.meetup.com/shutupandwriteportland/">Shut Up &amp; Write! Portland</a> <span class="badges"><span class="badge">Free</span></span></h3>
+    <p class="meta"><b>Multiple sessions weekly</b> — Fri 10am (NE), Sat 11:30am (NW), Sun 9am (SW) &amp; 3pm (Lake Oswego) · free</p>
+    <p class="desc">Structured write-ins: brief intros, an hour of silent co-writing, optional chat after. Two-thousand-plus members.</p>
+    <p class="why">The gold standard of body doubling — accountability and light social contact with no pressure to share your work.</p>
+  </article>
+
+  <article class="entry" data-tags="free dropin">
+    <h3><a href="https://starlightknittingsociety.com/">Knit Night at Starlight Knitting Society</a> <span class="badges"><span class="badge">Free</span><span class="badge">Drop-in</span></span></h3>
+    <p class="meta"><b>Wednesdays 6–8pm</b> · SE 52nd Ave · free · any portable craft welcome</p>
+    <p class="desc">Weekly open crafting social at a yarn shop — knitting, crochet, spinning, whatever travels.</p>
+    <p class="why">The classic stitch-circle format: hands busy, conversation optional, same welcoming regulars weekly. (Adjacent: a Fiber Arts Under-40 group meets Mondays at McMenamins on NW 23rd.)</p>
+  </article>
+</section>
+
+<!-- ============ THINK & PLAY ============ -->
+<section class="cat" id="think">
+  <div class="cat-head">
+    <h2>Think &amp; Play</h2>
+    <p>Games are conversation with rules. Everything here seats you across from another person and gives you something concrete to do together.</p>
+  </div>
+
+  <article class="entry" data-tags="free dropin">
+    <h3><a href="https://ggportland.com/calendar/portland-events-calendar/">Guardian Games — Open Board Game Play</a> <span class="badges"><span class="badge">Free</span><span class="badge">Drop-in</span></span></h3>
+    <p class="meta"><b>Sundays 12–6pm</b> (hosted) · paint night Mondays, Warhammer Wednesdays, weekly Magic · open play free/cheap</p>
+    <p class="desc">A huge SE Portland game store and bar with organized events most nights, including a hosted open-play afternoon.</p>
+    <p class="why">A host means you can show up alone and get seated at a table — near-zero social friction.</p>
+  </article>
+
+  <article class="entry" data-tags="dropin">
+    <h3><a href="https://www.heylo.com/g/bdfce4cc-f64d-4b22-bcdc-eab0fb6e3e54">D&amp;D Adventurers League at The Portland Game Store</a> <span class="badges"><span class="badge">Drop-in</span></span></h3>
+    <p class="meta"><b>Wednesdays 6pm</b> · free or a few dollars table fee</p>
+    <p class="desc">Official D&amp;D organized play, explicitly pitched at new players and anyone wanting a consistent table. (Gongaii Games in Beaverton covers the west side.)</p>
+    <p class="why">Standardized rules mean newcomers join mid-stream without an existing friend group; a recurring party is built-in weekly social contact.</p>
+  </article>
+
+  <article class="entry" data-tags="free dropin">
+    <h3><a href="https://puzzledpint.org/city/portland-oregon-usa-hq/">Puzzled Pint</a> <span class="badges"><span class="badge">Free</span><span class="badge">Drop-in</span></span></h3>
+    <p class="meta"><b>2nd Tuesday monthly</b>, evenings · free (buy a drink) · solve a location puzzle online to find the bar</p>
+    <p class="desc">Casual team puzzle night — Portland is the founding city, and 2026 dates are posted (Jul 14, Aug 11, Sep 8…).</p>
+    <p class="why">Team-based by design with free hints: the format forces friendly collaboration with strangers at very low stakes. The videogame-in-real-life feel of orienteering, indoors.</p>
+  </article>
+
+  <article class="entry" data-tags="">
+    <h3><a href="https://pdxchess.org/">Portland Chess Club</a></h3>
+    <p class="meta"><b>Tuesday-evening quads</b> + weekend tournaments · modest membership + small entry fees</p>
+    <p class="desc">One of the oldest chess clubs in the United States, with verified current tournaments.</p>
+    <p class="why">Rated play gives measurable progress — strongly g-loaded — inside a stable institution where the regulars return weekly.</p>
+    <p class="flagnote">Moving from Lloyd Center to Montgomery Park (NW 27th &amp; Vaughn, Suite 133) effective Sept 1, 2026.</p>
+  </article>
+
+  <article class="entry" data-tags="free dropin">
+    <h3><a href="https://www.rosecitychess.com/portland-meetups">Casual chess nights</a> <span class="badges"><span class="badge">Free</span><span class="badge">Drop-in</span></span></h3>
+    <p class="meta"><b>Sundays &amp; Mondays at Lucky Lab (Hawthorne), Tuesdays at Living Häus</b> · free</p>
+    <p class="desc">No-pressure boards-out chess at pubs and cafes, all levels.</p>
+    <p class="why">Zero-commitment entry point — sit down at a board and conversation happens automatically over the game.</p>
+  </article>
+
+  <article class="entry" data-tags="free dropin">
+    <h3><a href="https://portlandgoclub.com/">Portland Go Club</a> <span class="badges"><span class="badge">Free</span><span class="badge">Drop-in</span></span></h3>
+    <p class="meta"><b>Sundays 1–4pm</b> (Lucky Lab, Hawthorne) · <b>Wednesdays 6:30–9pm</b> (Sellwood) · teaching demos 3rd Sundays at Lan Su Chinese Garden · free</p>
+    <p class="desc">Long-running club for the game of Go; beginners are explicitly taught.</p>
+    <p class="why">A small, warm community where stronger players traditionally teach weaker ones — mentorship is baked into the culture, and the skill ceiling is bottomless.</p>
+  </article>
+
+  <article class="entry" data-tags="free">
+    <h3><a href="https://www.meetup.com/portland-effective-altruism-and-rationality">PEAR — Portland Effective Altruism &amp; Rationality</a> <span class="badges"><span class="badge">Free</span></span></h3>
+    <p class="meta"><b>Episodic</b> — ran the Spring 2026 ACX Everywhere meetup; currently 0 upcoming events listed · free</p>
+    <p class="desc">Portland's rationalist/ACX/LessWrong group, presently semi-dormant between ACX Everywhere rounds.</p>
+    <p class="why">Dense conversation with people who like arguing carefully. Realistic way in: email the organizer (scelarek@gmail.com) or catch the Fall 2026 ACX Everywhere round, announced on astralcodexten.com each September — those events are explicitly newcomer-oriented.</p>
+    <p class="flagnote">Semi-dormant: verify before making plans around it.</p>
+  </article>
+
+  <article class="entry" data-tags="">
+    <h3><a href="https://www.scienceontaporwa.org/">Science on Tap</a></h3>
+    <p class="meta"><b>Roughly monthly, weeknights 7pm</b> · Alberta Rose Theatre · ~$10–20 · 2026 dates: Jul 22, Sep 23, Oct 27, Nov 18</p>
+    <p class="desc">A science lecture series in a theater with drinks and Q&amp;A.</p>
+    <p class="why">Shared-audience learning that hands you something to talk about — an easy third-place evening. (This is also the living substitute for the defunct Nerd Nite, below.)</p>
+  </article>
+
+  <article class="entry" data-tags="dropin">
+    <h3><a href="https://shanrockstrivia.com/">ShanRock's Triviology</a> <span class="badges"><span class="badge">Drop-in</span></span></h3>
+    <p class="meta"><b>Mon–Thu at five neighborhood bars</b> (Waypost, The Snug, Dots, Bare Bones, EastBurn) · $5 per team</p>
+    <p class="desc">Portland's long-running independent pub quiz, going since 2005, current schedule verified.</p>
+    <p class="why">Team trivia where the same teams return weekly — regulars will absorb a newcomer or a solo player.</p>
+  </article>
+
+  <article class="entry" data-tags="free dropin">
+    <h3><a href="https://mississippipizza.com/calendar/">Trivia-sippi at Mississippi Pizza</a> <span class="badges"><span class="badge">Free</span><span class="badge">Drop-in</span></span></h3>
+    <p class="meta"><b>Wednesdays 6pm</b> · N Mississippi Ave · free, all ages</p>
+    <p class="desc">Free weekly all-ages quiz night, verified on the venue's current calendar.</p>
+    <p class="why">All-ages, alcohol-optional, early evening — one of the lowest-barrier recurring social events in town.</p>
+  </article>
+
+  <article class="entry" data-tags="free">
+    <h3><a href="https://multcolib.org/book-groups">Multnomah County Library "Pageturners" book groups</a> <span class="badges"><span class="badge">Free</span></span></h3>
+    <p class="meta"><b>Typically monthly per branch</b> · multiple branches, incl. nonfiction and classics variants · free</p>
+    <p class="desc">Library-run adult book discussion groups; pick a branch on their events calendar.</p>
+    <p class="why">Librarian-facilitated discussion is the gentlest structured social format there is — no performance pressure, guaranteed topic.</p>
+  </article>
+
+  <article class="entry" data-tags="dropin">
+    <h3><a href="https://www.rosecitybookpub.com/events-1">Rose City Book Pub</a> <span class="badges"><span class="badge">Drop-in</span></span></h3>
+    <p class="meta"><b>Multiple recurring events weekly</b> (book clubs, lit mic, writing workshops, trivia) · NE Fremont · many events free</p>
+    <p class="desc">A bookstore-pub whose entire business model is hosting bookish communities; book clubs reserve space free.</p>
+    <p class="why">A physical hub where several communities overlap — you can sample clubs until one fits.</p>
+  </article>
+</section>
+
+<!-- ============ OUTSIDE & QUIET ============ -->
+<section class="cat" id="outside">
+  <div class="cat-head">
+    <h2>Outside &amp; Quiet</h2>
+    <p>Portland's unfair advantage. Navigation games, birds, mushrooms, mountains, and three different flavors of sitting still.</p>
+  </div>
+
+  <article class="entry" data-tags="dropin">
+    <h3><a href="https://www.croc.org/events">Columbia River Orienteering Club (CROC)</a> <span class="badges"><span class="badge">Drop-in</span></span></h3>
+    <p class="meta"><b>Roughly monthly, year-round</b> · ~$12–22/event · free beginner clinics at most events · next: Mt. Tabor Classic Jul 11</p>
+    <p class="desc">Volunteer-run orienteering at parks around the metro, plus urban night events.</p>
+    <p class="why">The thing you enjoy in videogames, in real life: a playful, exploratory navigation puzzle with a built-in post-race debrief culture. Beginner clinics mean newcomers are actively taught.</p>
+  </article>
+
+  <article class="entry" data-tags="free">
+    <h3><a href="https://www.meetup.com/birdallianceoforegon/">Bird Alliance of Oregon outings</a> <span class="badges"><span class="badge">Free</span></span></h3>
+    <p class="meta"><b>Multiple outings monthly</b>, typically weekend mornings · free · loaner binoculars on request</p>
+    <p class="desc">Free volunteer-led bird walks across the metro, from the organization formerly known as Portland Audubon.</p>
+    <p class="why">Small-group, slow-paced, explicitly beginners-welcome — and a 2,800-member group makes repeated contact with the same people easy.</p>
+    <p class="flagnote">Register via the Meetup link — the org's own outings page blocks some browsers. Outings fill fast.</p>
+  </article>
+
+  <article class="entry" data-tags="dropin">
+    <h3><a href="https://www.portlandinsight.org/">Portland Insight Meditation Community</a> <span class="badges"><span class="badge">Drop-in</span></span></h3>
+    <p class="meta"><b>Sunday morning program</b> + weekly drop-in groups · SE Duke St · dana/donation</p>
+    <p class="desc">Vipassana/insight center whose Sunday format — meditation, dharma talk, community sharing — ends in tea and snacks at noon.</p>
+    <p class="why">The explicit social time removes the "how do I talk to anyone" barrier; welcoming to brand-new meditators.</p>
+  </article>
+
+  <article class="entry" data-tags="free dropin">
+    <h3><a href="https://dharma-rain.org/schedule/services/">Dharma Rain Zen Center</a> <span class="badges"><span class="badge">Free</span><span class="badge">Drop-in</span></span></h3>
+    <p class="meta"><b>Wed 7–9pm zazen + open class</b> (best entry point) · Sun 8:30–11:30am · NE Portland · Wednesdays free</p>
+    <p class="desc">Soto Zen center — built, pleasingly, on a rehabilitated landfill — with a full weekly lay-practice schedule.</p>
+    <p class="why">The same faces show up weekly, and the Wednesday open class is designed for people entirely new to Zen. Draws a mixed-age crowd.</p>
+  </article>
+
+  <article class="entry" data-tags="dropin">
+    <h3><a href="https://www.zendust.org/">Heart of Wisdom Zen Temple</a> <span class="badges"><span class="badge">Drop-in</span></span></h3>
+    <p class="meta"><b>Friday Night Metta, full-moon ceremonies</b>, roughly monthly rhythm · mostly donation-based</p>
+    <p class="desc">Portland city temple of the Zen Community of Oregon, with participatory public evenings.</p>
+    <p class="why">Metta and ceremony evenings are warm rather than austere — a gentler on-ramp than a silent sit, and they skew younger than a typical Sunday service.</p>
+  </article>
+
+  <article class="entry" data-tags="free dropin">
+    <h3><a href="https://mazamas.org/streetrambles/">Mazamas Street Rambles</a> <span class="badges"><span class="badge">Free</span><span class="badge">Drop-in</span></span></h3>
+    <p class="meta"><b>Every Tue &amp; Thu, 6–8pm sharp</b>, year-round, rain or shine · NW 13th Ave · free, no registration · 3–5 pace groups</p>
+    <p class="desc">Free two-hour evening conditioning walks run by the venerable mountaineering club.</p>
+    <p class="why">Twice-weekly, zero-commitment, pace-grouped: the single lowest-friction recurring social exercise option on this page, and a natural feeder into bigger Mazamas trips and classes.</p>
+  </article>
+
+  <article class="entry" data-tags="">
+    <h3><a href="https://trailsclub.org/activities/calendar/">Trails Club of Oregon</a></h3>
+    <p class="meta"><b>Weekly Wednesday evening conditioning hikes</b> + day hikes and backpacks · modest annual membership, guests welcome at many events</p>
+    <p class="desc">A 110-year-old outdoor club with day hikes, backpacking, snowshoeing, and two rustic lodges.</p>
+    <p class="why">Multigenerational club culture with lodge weekends — built for durable friendships, not one-off meetups.</p>
+  </article>
+
+  <article class="entry" data-tags="free">
+    <h3><a href="https://forestparkconservancy.org/volunteer/">Forest Park Conservancy work parties</a> <span class="badges"><span class="badge">Free</span></span></h3>
+    <p class="meta"><b>Regular weekend-morning events</b> · free · tools, gloves, and training provided, no experience necessary</p>
+    <p class="desc">Trail maintenance and ivy-pulling crews in America's largest forested city park.</p>
+    <p class="why">Shoulder-to-shoulder physical work outdoors is one of the most reliably mood-lifting, conversation-generating volunteer formats there is.</p>
+  </article>
+
+  <article class="entry" data-tags="free dropin">
+    <h3><a href="https://www.solve.org/volunteer">SOLVE cleanups</a> <span class="badges"><span class="badge">Free</span><span class="badge">Drop-in</span></span></h3>
+    <p class="meta"><b>Ongoing calendar year-round</b> across the metro · free · register online</p>
+    <p class="desc">Oregon's flagship litter-cleanup and restoration nonprofit.</p>
+    <p class="why">Drop-in, all-ages, no-skill events make it easy to sample different neighborhoods and crowds until something sticks.</p>
+  </article>
+
+  <article class="entry" data-tags="free">
+    <h3><a href="https://www.tryonfriends.org/volunteer">Friends of Tryon Creek stewardship crews</a> <span class="badges"><span class="badge">Free</span></span></h3>
+    <p class="meta"><b>Friday trail crew &amp; seed collection year-round</b>; Saturday land tending resumes in fall · free · SW Portland</p>
+    <p class="desc">Native-plant restoration and trail work in an old-growth-feel state natural area inside the city.</p>
+    <p class="why">Small recurring crews: same-people-every-week continuity plus the restorative-nature effect. (The Johnson Creek and Columbia Slough watershed councils run similar Saturday plantings.)</p>
+  </article>
+
+  <article class="entry" data-tags="">
+    <h3><a href="https://www.portland.gov/parks/community-gardens">Portland Community Gardens</a></h3>
+    <p class="meta"><b>60 city gardens</b> · plot fees vary, fee assistance available · periodic work parties</p>
+    <p class="desc">The city program: rent a plot, join work parties and the Produce for People donation program.</p>
+    <p class="why">A plot creates an automatic reason to show up weekly all season alongside the same neighbors — behavioral activation with vegetables as the accountability mechanism.</p>
+    <p class="flagnote">Waitlists vary by garden — apply early.</p>
+  </article>
+
+  <article class="entry" data-tags="dropin">
+    <h3><a href="https://www.rosecityastronomers.net/star-party-page">Rose City Astronomers — star parties</a> <span class="badges"><span class="badge">Drop-in</span></span></h3>
+    <p class="meta"><b>Monthly-ish public nights</b> · free ($10/vehicle parking) · 2026: Jul 18, Aug 12 (Perseids), Sep 12 · monthly meetings at OMSI</p>
+    <p class="desc">A large amateur-astronomy club co-hosting free public telescope nights at state parks.</p>
+    <p class="why">Telescope lines are famously chatty — members love showing newcomers objects — and the monthly OMSI meeting is a year-round indoor anchor.</p>
+  </article>
+
+  <article class="entry" data-tags="dropin">
+    <h3><a href="https://wildmushrooms.org/calendar/">Oregon Mycological Society</a> <span class="badges"><span class="badge">Drop-in</span></span></h3>
+    <p class="meta"><b>Monthly meetings</b> at World Forestry Center, 6:30–8:30pm (Aug 10, Sep 14, Oct 12, Nov 16) · public welcome; membership unlocks forays</p>
+    <p class="desc">The PNW mushroom club: speaker meetings, ID clinics, member field trips, and a big fall show.</p>
+    <p class="why">Obsessive-hobbyist energy with a strong mentorship norm; fall foray season is a ready-made social calendar.</p>
+    <p class="flagnote">Foray dates sit behind a member login — join before fall to see them.</p>
+  </article>
+
+  <article class="entry" data-tags="free dropin">
+    <h3><a href="https://www.portland.gov/parks/recreation/fitness-park">PP&amp;R Fitness in the Park</a> <span class="badges"><span class="badge">Free</span><span class="badge">Drop-in</span></span></h3>
+    <p class="meta"><b>Mon–Fri, Jun 22–Aug 28</b> · 10 parks · free, drop-in, no signup, all levels</p>
+    <p class="desc">Free outdoor yoga, tai chi, qigong, and core classes across ten Portland parks all summer.</p>
+    <p class="why">Zero-cost, zero-commitment gentle movement in public — the ideal first rung on the ladder. Seasonal, so pair it with a year-round option.</p>
+  </article>
+</section>
+
+<!-- ============ CONNECT & SERVE ============ -->
+<section class="cat" id="serve">
+  <div class="cat-head">
+    <h2>Connect &amp; Serve</h2>
+    <p>Structured contexts that do the initiating for you — a role, a shift, a shared task. Service formats are the most reliable of all: nobody is evaluating you while you sort cans.</p>
+  </div>
+
+  <article class="entry" data-tags="free">
+    <h3><a href="https://www.oregonhumane.org/volunteer/">Oregon Humane Society volunteering</a> <span class="badges"><span class="badge">Free</span></span></h3>
+    <p class="meta"><b>Ongoing shifts</b> after orientation and training · free · 18+</p>
+    <p class="desc">Structured shelter volunteering — dog and cat care, events, fostering — with formal onboarding tracks.</p>
+    <p class="why">Training, assigned roles, and regular shifts alongside the same people, plus animal contact: the classic low-pressure setting.</p>
+  </article>
+
+  <article class="entry" data-tags="free dropin">
+    <h3><a href="https://www.oregonfoodbank.org/get-involved/volunteer">Oregon Food Bank shifts</a> <span class="badges"><span class="badge">Free</span><span class="badge">Drop-in</span></span></h3>
+    <p class="meta"><b>Opportunities almost every day</b> · 2–3 hour shifts, book online per shift · Portland &amp; Beaverton warehouses · free</p>
+    <p class="desc">Group food-repack and sorting sessions you book one shift at a time.</p>
+    <p class="why">Inherently side-by-side group work with a shared task: conversation happens naturally, zero social prerequisite, go as often or rarely as you want.</p>
+  </article>
+
+  <article class="entry" data-tags="free">
+    <h3><a href="https://habitatportlandregion.org/volunteer/">Habitat for Humanity build days</a> <span class="badges"><span class="badge">Free</span></span></h3>
+    <p class="meta"><b>Year-round</b>, register for specific days · free · no experience needed, tools and training provided</p>
+    <p class="desc">Construction build-site days, plus four ReStore locations for indoor shifts.</p>
+    <p class="why">A full day of guided physical teamwork with the same small crew is one of the strongest structured-social formats available.</p>
+  </article>
+
+  <article class="entry" data-tags="free">
+    <h3><a href="https://blanchethouse.org/volunteer/">Blanchet House meal service</a> <span class="badges"><span class="badge">Free</span></span></h3>
+    <p class="meta"><b>Mon–Sat meal shifts</b> · downtown · free (14+) · sign up online after reading the handbook</p>
+    <p class="desc">Serve meals in their café to people experiencing houselessness; short, well-defined shifts with a clear role and a team.</p>
+    <p class="why">Meaningful service contact that reliably lifts mood without requiring any social initiation on your part.</p>
+  </article>
+
+  <article class="entry" data-tags="free">
+    <h3><a href="https://itsbigtime.org/become-a-big/">Big Brothers Big Sisters Columbia Northwest</a> <span class="badges"><span class="badge">Free</span></span></h3>
+    <p class="meta"><b>Meet your Little 2–4×/month</b>, 1-year minimum · free (background check) · male mentors especially needed — 80% of waitlisted kids are boys</p>
+    <p class="desc">One-to-one youth mentoring with orientation, interviews, and ongoing staff support.</p>
+    <p class="why">A deep, structured, purpose-driven relationship with professional scaffolding — the highest-commitment, highest-meaning entry on this page.</p>
+  </article>
+
+  <article class="entry" data-tags="free dropin">
+    <h3><a href="https://www.repairpdx.org/repair-events">Repair PDX — repair cafés</a> <span class="badges"><span class="badge">Free</span><span class="badge">Drop-in</span></span></h3>
+    <p class="meta"><b>Recurring, typically 12–3pm</b> · free · attend with a broken thing, or volunteer as a fixer or greeter</p>
+    <p class="desc">Community repair events where volunteer fixers mend appliances, clothing, and electronics.</p>
+    <p class="why">Side-by-side tinkering with strangers over a concrete task is ideal low-stakes socializing.</p>
+    <p class="flagnote">Their own site is thin — the portland.gov ResourcefulPDX calendar is the reliable source for dates.</p>
+  </article>
+
+  <article class="entry" data-tags="free">
+    <h3><a href="https://www.neptl.org/volunteer/">Northeast Portland Tool Library</a> <span class="badges"><span class="badge">Free</span></span></h3>
+    <p class="meta"><b>Shifts Sat 9am–2pm, Tue &amp; Wed 5:30–7:30pm</b> · free · no tool knowledge required · email volunteer@neptl.org</p>
+    <p class="desc">Staff the lending counter at this all-volunteer tool library. (SE Portland Tool Library is the same format on the other side of town.)</p>
+    <p class="why">Regular short shifts with repeat co-volunteers and a stream of friendly neighbors — a built-in weekly social anchor.</p>
+  </article>
+
+  <article class="entry" data-tags="dropin">
+    <h3><a href="https://portlandia.toastmastersclubs.org/">Portlandia Toastmasters</a> <span class="badges"><span class="badge">Drop-in</span></span></h3>
+    <p class="meta"><b>Thursdays 12pm</b>, hybrid · The Portland Building, Rm 203 · guests free; ~$45/6mo if you join</p>
+    <p class="desc">Long-running downtown public-speaking club with the standard structured meeting format.</p>
+    <p class="why">Toastmasters' rigid role structure — timer, evaluator, speaker — is social scaffolding in its purest form.</p>
+  </article>
+
+  <article class="entry" data-tags="free dropin">
+    <h3><a href="https://www.meetup.com/portland-spanish-conversation-group/">Portland Spanish Conversation Group</a> <span class="badges"><span class="badge">Free</span><span class="badge">Drop-in</span></span></h3>
+    <p class="meta"><b>Saturdays 12pm</b> · El Cubo De Cuba, SE Hawthorne · free (buy a drink or food) · all levels explicitly welcome</p>
+    <p class="desc">A casual bilingual Spanish/English conversation table with verified current sessions and multiple coordinators.</p>
+    <p class="why">A standing weekly table where conversation is literally the activity — there's nothing to initiate. (The larger "Portlandia School" language-exchange Meetup is dormant; skip it.)</p>
+  </article>
+
+  <article class="entry" data-tags="dropin">
+    <h3><a href="https://www.meetup.com/portland-authentic-relating-meetup-group/">Authentic Relating Portland — games nights</a> <span class="badges"><span class="badge">Drop-in</span></span></h3>
+    <p class="meta"><b>Recurring evenings</b>, ~$10–20 · facilitated connection games in pairs and small groups</p>
+    <p class="desc">Structured relational games nights, recommended as the entry point before circling events.</p>
+    <p class="why">Literally designed to manufacture connection for people without social momentum — the facilitator does all the initiating.</p>
+  </article>
+
+  <article class="entry" data-tags="">
+    <h3><a href="https://www.pcc.edu/community/schedule/">PCC Community Ed — food &amp; drink classes</a></h3>
+    <p class="meta"><b>Term-based</b> · fall schedule posts Jul 27 · affordable community-ed pricing per class</p>
+    <p class="desc">Non-credit group cooking classes — knife skills, baking, wood-fired ovens, cheese — at Portland Community College.</p>
+    <p class="why">Hands-on group classes give repeated contact with the same cohort around a shared task, plus a skill you keep.</p>
+  </article>
+
+  <article class="entry" data-tags="free">
+    <h3><a href="https://thephoenix.org/explore-events">The Phoenix — sober active community</a> <span class="badges"><span class="badge">Free</span></span></h3>
+    <p class="meta"><b>Free fitness and social events</b> (climbing, yoga, hiking, art) for anyone with 48 hours of sobriety, honor system</p>
+    <p class="desc">A national nonprofit built around activity-first sober community; events searchable on their site and free app.</p>
+    <p class="why">If active locally, an outstanding fit: free, structured, activity-first community.</p>
+    <p class="flagnote">Verified active nationally, but current in-person Portland events couldn't be confirmed from the website — check their NewForm app filtered to Portland first.</p>
+  </article>
+</section>
+
+<!-- ============ DEAD ENDS ============ -->
+<section class="dead" id="dead">
+  <div class="inner">
+    <h2>Dead ends — verified defunct or dormant, so you don't waste an evening</h2>
+    <ul>
+      <li><b>Nerd Nite PDX</b> — site still up, but no dated events since April 2025 and it's absent from its venue's current calendar. Science on Tap fills the niche.</li>
+      <li><b>Socrates Cafe PDX</b> — Portland listing last updated 2015; the active philosophy alternative is online-only. Genuine gap: in-person philosophy discussion.</li>
+      <li><b>The Circus Project</b> — closed August 2022; Echo Theater Company (listed above) absorbed its space.</li>
+      <li><b>Portland Ukulele Association</b> — meetings "cancelled until further notice."</li>
+      <li><b>Portlandia School Spanish &amp; English Language Exchange Meetup</b> — 504 members, but no events since April 2022.</li>
+    </ul>
+    <p class="smallnote">Also unverifiable when checked: Guild of Oregon Woodworkers class details (org is alive — call 503-591-9360), Booth Blacksmithing dates (Past Lives is the safer bet), CSz Portland class dates.</p>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <p>Every entry checked against the organization's own live pages, July 2026. Schedules drift — when in doubt, the △ notes say who to call. Compiled with care in the spirit of an earlier list about a much flatter city.</p>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var root=document.documentElement;
+  var toggle=document.getElementById('themeToggle');
+  var stored=null;
+  try{stored=localStorage.getItem('theme')}catch(e){}
+  if(stored==='dark'||stored==='light'){root.setAttribute('data-theme',stored)}
+  toggle.addEventListener('click',function(){
+    var cur=root.getAttribute('data-theme');
+    if(!cur){cur=window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'}
+    var next=cur==='dark'?'light':'dark';
+    root.setAttribute('data-theme',next);
+    try{localStorage.setItem('theme',next)}catch(e){}
+  });
+
+  var q=document.getElementById('q');
+  var chips=Array.prototype.slice.call(document.querySelectorAll('.chip'));
+  var entries=Array.prototype.slice.call(document.querySelectorAll('article.entry'));
+  var sections=Array.prototype.slice.call(document.querySelectorAll('section.cat'));
+  var count=document.getElementById('count');
+
+  function apply(){
+    var term=q.value.trim().toLowerCase();
+    var active=chips.filter(function(c){return c.getAttribute('aria-pressed')==='true'})
+                    .map(function(c){return c.dataset.tag});
+    var shown=0;
+    entries.forEach(function(e){
+      var tags=(e.dataset.tags||'').split(' ');
+      var okTags=active.every(function(t){return tags.indexOf(t)!==-1});
+      var okTerm=!term||e.textContent.toLowerCase().indexOf(term)!==-1;
+      var ok=okTags&&okTerm;
+      e.classList.toggle('hidden',!ok);
+      if(ok)shown++;
+    });
+    sections.forEach(function(s){
+      var any=s.querySelectorAll('article.entry:not(.hidden)').length>0;
+      s.classList.toggle('hidden',!any);
+    });
+    count.textContent=(term||active.length)?shown+' of '+entries.length+' shown':entries.length+' entries';
+  }
+  chips.forEach(function(c){
+    c.addEventListener('click',function(){
+      c.setAttribute('aria-pressed',c.getAttribute('aria-pressed')==='true'?'false':'true');
+      apply();
+    });
+  });
+  q.addEventListener('input',apply);
+  apply();
+})();
+</script>
+</body>
+</html>
